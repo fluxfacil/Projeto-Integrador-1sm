@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace App___PI
 {
-    public partial class Form1 : Form
+    public partial class Form3: Form
     {
-        public Form1()
+        public Form3()
         {
             InitializeComponent();
-        }
-
-        private void btn_logar_Click(object sender, EventArgs e)
-        {
-            Form2 homepage = new Form2();
-            homepage.Show();
-            this.Hide();
-           
         }
     }
 }
