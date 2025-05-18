@@ -38,7 +38,7 @@ namespace App___PI
                 return;
             }
 
-            functions.AdicionarSaldo(nomeUsuarioLogado, realValue);
+            functions.AtualizarSaldoUsuario(nomeUsuarioLogado, realValue, true);
             MessageBox.Show("Saldo atualizado com sucesso!");
             this.Close();
             

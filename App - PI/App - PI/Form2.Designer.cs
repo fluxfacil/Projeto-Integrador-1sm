@@ -40,7 +40,6 @@ namespace App___PI
             lbl_saldoTotalConta = new Label();
             btn_excluirConta = new Button();
             btn_atualizarConta = new Button();
-            btn_editarSaldo = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -61,6 +60,7 @@ namespace App___PI
             comboBox_Filtro.Name = "comboBox_Filtro";
             comboBox_Filtro.Size = new Size(151, 28);
             comboBox_Filtro.TabIndex = 21;
+            comboBox_Filtro.SelectedIndexChanged += comboBox_Filtro_SelectedIndexChanged;
             // 
             // dataGridView1
             // 
@@ -134,6 +134,7 @@ namespace App___PI
             btn_excluirConta.TabIndex = 24;
             btn_excluirConta.Text = "Excluir conta";
             btn_excluirConta.UseVisualStyleBackColor = false;
+            btn_excluirConta.Click += btn_excluirConta_Click;
             // 
             // btn_atualizarConta
             // 
@@ -146,24 +147,11 @@ namespace App___PI
             btn_atualizarConta.Text = "Atualizar Conta";
             btn_atualizarConta.UseVisualStyleBackColor = false;
             // 
-            // btn_editarSaldo
-            // 
-            btn_editarSaldo.BackColor = Color.LimeGreen;
-            btn_editarSaldo.ImageAlign = ContentAlignment.BottomCenter;
-            btn_editarSaldo.Location = new Point(552, 40);
-            btn_editarSaldo.Name = "btn_editarSaldo";
-            btn_editarSaldo.Size = new Size(127, 41);
-            btn_editarSaldo.TabIndex = 26;
-            btn_editarSaldo.Text = "Editar";
-            btn_editarSaldo.UseVisualStyleBackColor = false;
-            btn_editarSaldo.Click += btn_editarSaldo_Click;
-            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1012, 591);
-            Controls.Add(btn_editarSaldo);
             Controls.Add(btn_atualizarConta);
             Controls.Add(btn_excluirConta);
             Controls.Add(lbl_saldoTotalConta);
@@ -195,6 +183,5 @@ namespace App___PI
         private Label lbl_saldoTotalConta;
         private Button btn_excluirConta;
         private Button btn_atualizarConta;
-        private Button btn_editarSaldo;
     }
 }

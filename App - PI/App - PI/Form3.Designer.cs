@@ -169,7 +169,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form3";
-            Text = "Form3";
+            Text = "Adicionar Conta";
             Load += Form3_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

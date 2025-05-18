@@ -280,5 +280,45 @@ namespace App___PI
             AtualizarSaldoUsuario(nomeUsuario, valorAdicionar, true);
             MessageBox.Show($"Saldo de R$ {valorAdicionar:F2} adicionado com sucesso!");
         }
+
+        public static void RemoverTransacao(string nome, string categoria, string tipo, string data, string valor, string usuario)
+        {
+            string tempPath = CaminhoFluxoFacilDatabase + ".tmp";
+            using (StreamReader sr = new StreamReader(CaminhoFluxoFacilDatabase))
+            using (StreamWriter sw = new StreamWriter(tempPath))
+            {
+                string linha;
+                bool cabecalho = true;
+
+                while ((linha = sr.ReadLine()) != null)
+                {
+                    if (cabecalho)
+                    {
+                        sw.WriteLine(linha);
+                        cabecalho = false;
+                        continue;
+                    }
+
+                    string[] partes = linha.Split(',');
+                    if (partes.Length >= 6 &&
+                        partes[0] == nome &&
+                        partes[1] == categoria &&
+                        partes[2] == tipo &&
+                        partes[3] == data &&
+                        partes[4] == valor &&
+                        partes[5] == usuario)
+                    {
+                        // Ignora essa linha (remoção)
+                        continue;
+                    }
+
+                    sw.WriteLine(linha);
+                }
+            }
+
+            File.Delete(CaminhoFluxoFacilDatabase);
+            File.Move(tempPath, CaminhoFluxoFacilDatabase);
+        }
+
     }
 }

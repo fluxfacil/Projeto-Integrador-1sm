@@ -109,7 +109,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form5";
-            Text = "Form5";
+            Text = "Cadastro";
             Load += Form5_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);

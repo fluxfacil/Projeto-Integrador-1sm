@@ -52,6 +52,24 @@ namespace App___PI
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = functions.LerDatabasePorUsuario(usuarioLogado);
         }
+        private void PopularCategoriasFiltro()
+        {
+            comboBox_Filtro.Items.Clear();
+            comboBox_Filtro.Items.Add("Todas");
+
+            var dt = functions.LerDatabasePorUsuario(usuarioLogado);
+            var categorias = dt.AsEnumerable()
+                               .Select(row => row["Categoria"].ToString().Trim())
+                               .Distinct()
+                               .OrderBy(c => c)
+                               .ToList();
+
+            foreach (var cat in categorias)
+                comboBox_Filtro.Items.Add(cat);
+
+            comboBox_Filtro.SelectedIndex = 0;
+        }
+
 
         private void Form2_Load(object sender, EventArgs e)
         {
@@ -68,6 +86,9 @@ namespace App___PI
             }
 
             lbl_user.Text = $"Olá:{usuarioLogado}";
+            PopularCategoriasFiltro();
+
+
 
 
         }
@@ -132,8 +153,6 @@ namespace App___PI
         private void btn_editarSaldo_Click(object sender, EventArgs e)
         {
             usuarioLogado = functions.ObterUsuarioLogado();
-            MessageBox.Show(usuarioLogado);
-
             if (string.IsNullOrEmpty(usuarioLogado))
             {
                 MessageBox.Show("Usuário não está logado!");
@@ -146,5 +165,55 @@ namespace App___PI
             // Atualiza o saldo após adicionar
             AtualizarSaldoTotal();
         }
+
+        private void btn_excluirConta_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow != null)
+            {
+                string nome = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                string categoria = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                string tipo = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                string data = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                string valor = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+
+                DialogResult dr = MessageBox.Show("Deseja realmente remover este item?", "Confirmação", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    functions.RemoverTransacao(nome, categoria, tipo, data, valor, usuarioLogado);
+                    functions.RecalcularSaldoUsuario(usuarioLogado);
+                    MessageBox.Show("Removido com sucesso!");
+                    AtualizarDataGrid();
+                    AtualizarSaldoTotal();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Selecione um item para excluir.");
+            }
+        }
+
+
+        private void comboBox_Filtro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string categoriaSelecionada = comboBox_Filtro.SelectedItem.ToString();
+            usuarioLogado = functions.ObterUsuarioLogado();
+
+            if (string.IsNullOrEmpty(usuarioLogado))
+                return;
+
+            DataTable dt = functions.LerDatabasePorUsuario(usuarioLogado);
+
+            if (categoriaSelecionada != "Todas")
+            {
+                DataView dv = dt.DefaultView;
+                dv.RowFilter = $"Categoria = '{categoriaSelecionada}'";
+                dataGridView1.DataSource = dv;
+            }
+            else
+            {
+                dataGridView1.DataSource = dt;
+            }
+        }
+
     }
 }
