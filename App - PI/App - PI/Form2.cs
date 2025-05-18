@@ -19,7 +19,21 @@ namespace App___PI
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            //criação de arquvios csv na pasta do usuário publica
+            string pastaDestino = @"C:\Users\Public\Documents";
+            string caminhoFluxoFacilDatabase = Path.Combine(pastaDestino, "fluxofacildatabase.csv");
+            // Cria a pasta se não existir
+            if (!Directory.Exists(pastaDestino))
+            {
+                Directory.CreateDirectory(pastaDestino);
+            }
+            if (!File.Exists(caminhoFluxoFacilDatabase))
+            {
+                using (StreamWriter csvCalculadora = new StreamWriter(caminhoFluxoFacilDatabase))
+                {
+                    csvCalculadora.WriteLine("id,Nome,Categoria,Tipo,data,valor");
+                }
+            }
         }
 
         private void btn_adicionarConta_Click(object sender, EventArgs e)
