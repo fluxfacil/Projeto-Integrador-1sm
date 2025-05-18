@@ -30,17 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form3));
             pictureBox1 = new PictureBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
+            txt_nomeConta = new TextBox();
+            txt_categoriaConta = new TextBox();
+            txt_valor = new TextBox();
+            dateTime_DataConta = new DateTimePicker();
             btn_salvarConta = new Button();
             lbl_nomeConta = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
             label5 = new Label();
-            comboBox2 = new ComboBox();
+            comboBox_DespesaReceita = new ComboBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -55,33 +55,33 @@
             pictureBox1.TabIndex = 16;
             pictureBox1.TabStop = false;
             // 
-            // textBox1
+            // txt_nomeConta
             // 
-            textBox1.Location = new Point(21, 157);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 17;
+            txt_nomeConta.Location = new Point(21, 157);
+            txt_nomeConta.Name = "txt_nomeConta";
+            txt_nomeConta.Size = new Size(125, 27);
+            txt_nomeConta.TabIndex = 17;
             // 
-            // textBox2
+            // txt_categoriaConta
             // 
-            textBox2.Location = new Point(21, 228);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 18;
+            txt_categoriaConta.Location = new Point(21, 228);
+            txt_categoriaConta.Name = "txt_categoriaConta";
+            txt_categoriaConta.Size = new Size(125, 27);
+            txt_categoriaConta.TabIndex = 18;
             // 
-            // textBox3
+            // txt_valor
             // 
-            textBox3.Location = new Point(21, 411);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 19;
+            txt_valor.Location = new Point(21, 411);
+            txt_valor.Name = "txt_valor";
+            txt_valor.Size = new Size(125, 27);
+            txt_valor.TabIndex = 19;
             // 
-            // dateTimePicker1
+            // dateTime_DataConta
             // 
-            dateTimePicker1.Location = new Point(21, 353);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(203, 27);
-            dateTimePicker1.TabIndex = 21;
+            dateTime_DataConta.Location = new Point(21, 353);
+            dateTime_DataConta.Name = "dateTime_DataConta";
+            dateTime_DataConta.Size = new Size(203, 27);
+            dateTime_DataConta.TabIndex = 21;
             // 
             // btn_salvarConta
             // 
@@ -93,6 +93,7 @@
             btn_salvarConta.TabIndex = 22;
             btn_salvarConta.Text = "Salvar ";
             btn_salvarConta.UseVisualStyleBackColor = false;
+            btn_salvarConta.Click += btn_salvarConta_Click;
             // 
             // lbl_nomeConta
             // 
@@ -139,36 +140,37 @@
             label5.TabIndex = 27;
             label5.Text = "valor:";
             // 
-            // comboBox2
+            // comboBox_DespesaReceita
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Despesa", "Receita" });
-            comboBox2.Location = new Point(21, 299);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(128, 28);
-            comboBox2.TabIndex = 28;
+            comboBox_DespesaReceita.FormattingEnabled = true;
+            comboBox_DespesaReceita.Items.AddRange(new object[] { "Despesa", "Receita" });
+            comboBox_DespesaReceita.Location = new Point(21, 299);
+            comboBox_DespesaReceita.Name = "comboBox_DespesaReceita";
+            comboBox_DespesaReceita.Size = new Size(128, 28);
+            comboBox_DespesaReceita.TabIndex = 28;
             // 
             // Form3
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(521, 450);
-            Controls.Add(comboBox2);
+            Controls.Add(comboBox_DespesaReceita);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(lbl_nomeConta);
             Controls.Add(btn_salvarConta);
-            Controls.Add(dateTimePicker1);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
+            Controls.Add(dateTime_DataConta);
+            Controls.Add(txt_valor);
+            Controls.Add(txt_categoriaConta);
+            Controls.Add(txt_nomeConta);
             Controls.Add(pictureBox1);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form3";
             Text = "Form3";
+            Load += Form3_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -177,16 +179,16 @@
         #endregion
 
         private PictureBox pictureBox1;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private DateTimePicker dateTimePicker1;
+        private TextBox txt_nomeConta;
+        private TextBox txt_categoriaConta;
+        private TextBox txt_valor;
+        private DateTimePicker dateTime_DataConta;
         private Button btn_salvarConta;
         private Label lbl_nomeConta;
         private Label label2;
         private Label label3;
         private Label label4;
         private Label label5;
-        private ComboBox comboBox2;
+        private ComboBox comboBox_DespesaReceita;
     }
 }

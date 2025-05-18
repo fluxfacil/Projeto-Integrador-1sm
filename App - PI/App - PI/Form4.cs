@@ -10,11 +10,43 @@ using System.Windows.Forms;
 
 namespace App___PI
 {
-    public partial class Form4: Form
+    public partial class Form4 : Form
     {
-        public Form4()
+        private string nomeUsuarioLogado;
+
+        public Form4(string nomeUsuario)
         {
             InitializeComponent();
+            nomeUsuarioLogado = nomeUsuario;
+        }
+
+
+        private void txt_adicionarSaldo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_salvarNovoSaldo_Click(object sender, EventArgs e)
+        {
+
+            var valor = txt_adicionarSaldo.Text.ToString();
+            decimal realValue = Convert.ToDecimal(valor);
+
+            if (realValue <= 0)
+            {
+                MessageBox.Show("Digite um valor maior que zero.");
+                return;
+            }
+
+            functions.AdicionarSaldo(nomeUsuarioLogado, realValue);
+            MessageBox.Show("Saldo atualizado com sucesso!");
+            this.Close();
+            
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

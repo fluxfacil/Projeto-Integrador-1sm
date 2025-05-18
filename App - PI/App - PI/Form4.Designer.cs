@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            textBox1 = new TextBox();
+            txt_adicionarSaldo = new TextBox();
             btn_salvarNovoSaldo = new Button();
             SuspendLayout();
             // 
@@ -42,12 +42,13 @@
             label1.TabIndex = 0;
             label1.Text = "Adicionar Saldo:";
             // 
-            // textBox1
+            // txt_adicionarSaldo
             // 
-            textBox1.Location = new Point(125, 70);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(139, 27);
-            textBox1.TabIndex = 1;
+            txt_adicionarSaldo.Location = new Point(125, 70);
+            txt_adicionarSaldo.Name = "txt_adicionarSaldo";
+            txt_adicionarSaldo.Size = new Size(139, 27);
+            txt_adicionarSaldo.TabIndex = 1;
+            txt_adicionarSaldo.TextChanged += txt_adicionarSaldo_TextChanged;
             // 
             // btn_salvarNovoSaldo
             // 
@@ -59,6 +60,7 @@
             btn_salvarNovoSaldo.TabIndex = 23;
             btn_salvarNovoSaldo.Text = "Salvar ";
             btn_salvarNovoSaldo.UseVisualStyleBackColor = false;
+            btn_salvarNovoSaldo.Click += btn_salvarNovoSaldo_Click;
             // 
             // Form4
             // 
@@ -66,12 +68,13 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(398, 212);
             Controls.Add(btn_salvarNovoSaldo);
-            Controls.Add(textBox1);
+            Controls.Add(txt_adicionarSaldo);
             Controls.Add(label1);
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form4";
             Text = "Form4";
+            Load += Form4_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -79,7 +82,7 @@
         #endregion
 
         private Label label1;
-        private TextBox textBox1;
+        private TextBox txt_adicionarSaldo;
         private Button btn_salvarNovoSaldo;
     }
 }

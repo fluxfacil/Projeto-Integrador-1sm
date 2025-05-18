@@ -35,6 +35,7 @@
             label2 = new Label();
             txt_usuario = new TextBox();
             txt_senha = new TextBox();
+            btn_cadastrar = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -53,13 +54,13 @@
             // 
             btn_logar.BackColor = Color.LimeGreen;
             btn_logar.ImageAlign = ContentAlignment.BottomCenter;
-            btn_logar.Location = new Point(320, 360);
+            btn_logar.Location = new Point(233, 363);
             btn_logar.Name = "btn_logar";
             btn_logar.Size = new Size(139, 41);
             btn_logar.TabIndex = 10;
             btn_logar.Text = "Logar";
             btn_logar.UseVisualStyleBackColor = false;
-            btn_logar.Click += btn_logar_Click;
+            btn_logar.Click += btn_login_Click;
             // 
             // label1
             // 
@@ -93,11 +94,24 @@
             txt_senha.Size = new Size(319, 27);
             txt_senha.TabIndex = 14;
             // 
+            // btn_cadastrar
+            // 
+            btn_cadastrar.BackColor = Color.ForestGreen;
+            btn_cadastrar.ImageAlign = ContentAlignment.BottomCenter;
+            btn_cadastrar.Location = new Point(413, 363);
+            btn_cadastrar.Name = "btn_cadastrar";
+            btn_cadastrar.Size = new Size(139, 41);
+            btn_cadastrar.TabIndex = 15;
+            btn_cadastrar.Text = "Cadastrar";
+            btn_cadastrar.UseVisualStyleBackColor = false;
+            btn_cadastrar.Click += btn_cadastrar_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btn_cadastrar);
             Controls.Add(txt_senha);
             Controls.Add(txt_usuario);
             Controls.Add(label2);
@@ -106,6 +120,7 @@
             Controls.Add(pictureBox1);
             Name = "Form1";
             Text = "Form1";
+            Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -119,5 +134,6 @@
         private Label label2;
         private TextBox txt_usuario;
         private TextBox txt_senha;
+        private Button btn_cadastrar;
     }
 }

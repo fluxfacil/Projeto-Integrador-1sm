@@ -1,4 +1,5 @@
-﻿namespace App___PI
+﻿
+namespace App___PI
 {
     partial class Form2
     {
@@ -34,10 +35,12 @@
             dataGridView1 = new DataGridView();
             btn_adicionarConta = new Button();
             lbl_saldo = new Label();
-            button2 = new Button();
             lbl_user = new Label();
             pictureBox1 = new PictureBox();
             lbl_saldoTotalConta = new Label();
+            btn_excluirConta = new Button();
+            btn_atualizarConta = new Button();
+            btn_editarSaldo = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -90,18 +93,6 @@
             lbl_saldo.TabIndex = 18;
             lbl_saldo.Text = "Saldo:";
             // 
-            // button2
-            // 
-            button2.BackColor = Color.LimeGreen;
-            button2.ImageAlign = ContentAlignment.BottomCenter;
-            button2.Location = new Point(540, 40);
-            button2.Name = "button2";
-            button2.Size = new Size(139, 41);
-            button2.TabIndex = 17;
-            button2.Text = "Editar Saldo";
-            button2.UseVisualStyleBackColor = false;
-            button2.Click += button2_Click;
-            // 
             // lbl_user
             // 
             lbl_user.AutoSize = true;
@@ -133,18 +124,54 @@
             lbl_saldoTotalConta.TabIndex = 23;
             lbl_saldoTotalConta.Text = "0";
             // 
+            // btn_excluirConta
+            // 
+            btn_excluirConta.BackColor = Color.Red;
+            btn_excluirConta.ImageAlign = ContentAlignment.BottomCenter;
+            btn_excluirConta.Location = new Point(822, 185);
+            btn_excluirConta.Name = "btn_excluirConta";
+            btn_excluirConta.Size = new Size(118, 41);
+            btn_excluirConta.TabIndex = 24;
+            btn_excluirConta.Text = "Excluir conta";
+            btn_excluirConta.UseVisualStyleBackColor = false;
+            // 
+            // btn_atualizarConta
+            // 
+            btn_atualizarConta.BackColor = Color.Yellow;
+            btn_atualizarConta.ImageAlign = ContentAlignment.BottomCenter;
+            btn_atualizarConta.Location = new Point(685, 185);
+            btn_atualizarConta.Name = "btn_atualizarConta";
+            btn_atualizarConta.Size = new Size(131, 41);
+            btn_atualizarConta.TabIndex = 25;
+            btn_atualizarConta.Text = "Atualizar Conta";
+            btn_atualizarConta.UseVisualStyleBackColor = false;
+            // 
+            // btn_editarSaldo
+            // 
+            btn_editarSaldo.BackColor = Color.LimeGreen;
+            btn_editarSaldo.ImageAlign = ContentAlignment.BottomCenter;
+            btn_editarSaldo.Location = new Point(552, 40);
+            btn_editarSaldo.Name = "btn_editarSaldo";
+            btn_editarSaldo.Size = new Size(127, 41);
+            btn_editarSaldo.TabIndex = 26;
+            btn_editarSaldo.Text = "Editar";
+            btn_editarSaldo.UseVisualStyleBackColor = false;
+            btn_editarSaldo.Click += btn_editarSaldo_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1012, 591);
+            Controls.Add(btn_editarSaldo);
+            Controls.Add(btn_atualizarConta);
+            Controls.Add(btn_excluirConta);
             Controls.Add(lbl_saldoTotalConta);
             Controls.Add(label1);
             Controls.Add(comboBox_Filtro);
             Controls.Add(dataGridView1);
             Controls.Add(btn_adicionarConta);
             Controls.Add(lbl_saldo);
-            Controls.Add(button2);
             Controls.Add(lbl_user);
             Controls.Add(pictureBox1);
             Name = "Form2";
@@ -163,9 +190,11 @@
         private DataGridView dataGridView1;
         private Button btn_adicionarConta;
         private Label lbl_saldo;
-        private Button button2;
         private Label lbl_user;
         private PictureBox pictureBox1;
         private Label lbl_saldoTotalConta;
+        private Button btn_excluirConta;
+        private Button btn_atualizarConta;
+        private Button btn_editarSaldo;
     }
 }
