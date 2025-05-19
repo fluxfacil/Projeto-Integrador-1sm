@@ -39,7 +39,6 @@ namespace App___PI
             pictureBox1 = new PictureBox();
             lbl_saldoTotalConta = new Label();
             btn_excluirConta = new Button();
-            btn_atualizarConta = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -47,37 +46,44 @@ namespace App___PI
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(45, 185);
+            label1.Location = new Point(39, 139);
             label1.Name = "label1";
-            label1.Size = new Size(75, 20);
+            label1.Size = new Size(94, 15);
             label1.TabIndex = 22;
-            label1.Text = "Filtrar Por:";
+            label1.Text = "Filtrar Categoria:";
             // 
             // comboBox_Filtro
             // 
             comboBox_Filtro.FormattingEnabled = true;
-            comboBox_Filtro.Location = new Point(45, 208);
+            comboBox_Filtro.Location = new Point(39, 156);
+            comboBox_Filtro.Margin = new Padding(3, 2, 3, 2);
             comboBox_Filtro.Name = "comboBox_Filtro";
-            comboBox_Filtro.Size = new Size(151, 28);
+            comboBox_Filtro.Size = new Size(133, 23);
             comboBox_Filtro.TabIndex = 21;
             comboBox_Filtro.SelectedIndexChanged += comboBox_Filtro_SelectedIndexChanged;
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(45, 242);
+            dataGridView1.Location = new Point(39, 182);
+            dataGridView1.Margin = new Padding(3, 2, 3, 2);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(895, 303);
+            dataGridView1.Size = new Size(783, 227);
             dataGridView1.TabIndex = 20;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // btn_adicionarConta
             // 
             btn_adicionarConta.BackColor = Color.LimeGreen;
             btn_adicionarConta.ImageAlign = ContentAlignment.BottomCenter;
-            btn_adicionarConta.Location = new Point(45, 140);
+            btn_adicionarConta.Location = new Point(39, 105);
+            btn_adicionarConta.Margin = new Padding(3, 2, 3, 2);
             btn_adicionarConta.Name = "btn_adicionarConta";
-            btn_adicionarConta.Size = new Size(188, 41);
+            btn_adicionarConta.Size = new Size(164, 31);
             btn_adicionarConta.TabIndex = 19;
             btn_adicionarConta.Text = "Adicionar Conta";
             btn_adicionarConta.UseVisualStyleBackColor = false;
@@ -87,9 +93,9 @@ namespace App___PI
             // 
             lbl_saldo.AutoSize = true;
             lbl_saldo.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_saldo.Location = new Point(685, 40);
+            lbl_saldo.Location = new Point(599, 30);
             lbl_saldo.Name = "lbl_saldo";
-            lbl_saldo.Size = new Size(101, 41);
+            lbl_saldo.Size = new Size(80, 32);
             lbl_saldo.TabIndex = 18;
             lbl_saldo.Text = "Saldo:";
             // 
@@ -97,9 +103,9 @@ namespace App___PI
             // 
             lbl_user.AutoSize = true;
             lbl_user.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_user.Location = new Point(172, 37);
+            lbl_user.Location = new Point(150, 28);
             lbl_user.Name = "lbl_user";
-            lbl_user.Size = new Size(72, 41);
+            lbl_user.Size = new Size(57, 32);
             lbl_user.TabIndex = 16;
             lbl_user.Text = "Olá:";
             // 
@@ -107,9 +113,10 @@ namespace App___PI
             // 
             pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
             pictureBox1.InitialImage = (Image)resources.GetObject("pictureBox1.InitialImage");
-            pictureBox1.Location = new Point(45, 37);
+            pictureBox1.Location = new Point(39, 28);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(101, 97);
+            pictureBox1.Size = new Size(88, 73);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 15;
             pictureBox1.TabStop = false;
@@ -118,9 +125,9 @@ namespace App___PI
             // 
             lbl_saldoTotalConta.AutoSize = true;
             lbl_saldoTotalConta.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbl_saldoTotalConta.Location = new Point(792, 40);
+            lbl_saldoTotalConta.Location = new Point(693, 30);
             lbl_saldoTotalConta.Name = "lbl_saldoTotalConta";
-            lbl_saldoTotalConta.Size = new Size(35, 41);
+            lbl_saldoTotalConta.Size = new Size(27, 32);
             lbl_saldoTotalConta.TabIndex = 23;
             lbl_saldoTotalConta.Text = "0";
             // 
@@ -128,31 +135,20 @@ namespace App___PI
             // 
             btn_excluirConta.BackColor = Color.Red;
             btn_excluirConta.ImageAlign = ContentAlignment.BottomCenter;
-            btn_excluirConta.Location = new Point(822, 185);
+            btn_excluirConta.Location = new Point(719, 139);
+            btn_excluirConta.Margin = new Padding(3, 2, 3, 2);
             btn_excluirConta.Name = "btn_excluirConta";
-            btn_excluirConta.Size = new Size(118, 41);
+            btn_excluirConta.Size = new Size(103, 31);
             btn_excluirConta.TabIndex = 24;
             btn_excluirConta.Text = "Excluir conta";
             btn_excluirConta.UseVisualStyleBackColor = false;
             btn_excluirConta.Click += btn_excluirConta_Click;
             // 
-            // btn_atualizarConta
-            // 
-            btn_atualizarConta.BackColor = Color.Yellow;
-            btn_atualizarConta.ImageAlign = ContentAlignment.BottomCenter;
-            btn_atualizarConta.Location = new Point(685, 185);
-            btn_atualizarConta.Name = "btn_atualizarConta";
-            btn_atualizarConta.Size = new Size(131, 41);
-            btn_atualizarConta.TabIndex = 25;
-            btn_atualizarConta.Text = "Atualizar Conta";
-            btn_atualizarConta.UseVisualStyleBackColor = false;
-            // 
             // Form2
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1012, 591);
-            Controls.Add(btn_atualizarConta);
+            ClientSize = new Size(886, 443);
             Controls.Add(btn_excluirConta);
             Controls.Add(lbl_saldoTotalConta);
             Controls.Add(label1);
@@ -162,6 +158,7 @@ namespace App___PI
             Controls.Add(lbl_saldo);
             Controls.Add(lbl_user);
             Controls.Add(pictureBox1);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Form2";
             Text = "Form2";
             Load += Form2_Load;
@@ -182,6 +179,5 @@ namespace App___PI
         private PictureBox pictureBox1;
         private Label lbl_saldoTotalConta;
         private Button btn_excluirConta;
-        private Button btn_atualizarConta;
     }
 }

@@ -18,6 +18,7 @@ namespace App___PI
         public Form2()
         {
             InitializeComponent();
+
         }
 
         private void AtualizarSaldoTotal()
@@ -215,5 +216,25 @@ namespace App___PI
             }
         }
 
+        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells.Count >= 5)
+            {
+                var row = dataGridView1.Rows[e.RowIndex];
+
+                string nome = row.Cells[0].Value.ToString();
+                string categoria = row.Cells[1].Value.ToString();
+                string tipo = row.Cells[2].Value.ToString(); // "Despesa" ou "Receita"
+                string data = row.Cells[3].Value.ToString();
+                string valor = row.Cells[4].Value.ToString();
+
+                // Abre o Form6 com os dados
+                Form6 formAtualizar = new Form6(nome, categoria, tipo, data, valor);
+                formAtualizar.ShowDialog();
+
+                AtualizarDataGrid();
+                AtualizarSaldoTotal();
+            }
+        }
     }
 }

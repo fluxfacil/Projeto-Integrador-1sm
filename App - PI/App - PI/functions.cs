@@ -320,5 +320,21 @@ namespace App___PI
             File.Move(tempPath, CaminhoFluxoFacilDatabase);
         }
 
+        public static void AtualizarTransacao(
+        string nomeAntigo, string categoriaAntiga, string tipoAntigo, string dataAntiga, string valorAntigo,
+        string nomeNovo, string categoriaNova, string tipoNova, string dataNova, string valorNova,
+        string usuario)
+            {
+                // Remove a transação original
+                RemoverTransacao(nomeAntigo, categoriaAntiga, tipoAntigo, dataAntiga, valorAntigo, usuario);
+
+                // Adiciona a nova transação
+                AdicionarConta(nomeNovo, categoriaNova, tipoNova, dataNova, valorNova, usuario);
+
+                // Recalcula o saldo
+                RecalcularSaldoUsuario(usuario);
+            }
+
+
     }
 }
