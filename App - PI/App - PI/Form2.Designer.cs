@@ -199,6 +199,7 @@ namespace App___PI
             Margin = new Padding(3, 2, 3, 2);
             Name = "Form2";
             Text = "Form2";
+            FormClosed += Form2_FormClosed;
             Load += Form2_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

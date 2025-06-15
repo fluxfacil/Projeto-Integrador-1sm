@@ -111,59 +111,6 @@ namespace App___PI
             AtualizarSaldoTotal();
         }
 
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Atualiza automaticamente quando clica na grid
-            AtualizarDataGrid();
-            AtualizarSaldoTotal();
-        }
-
-        private void lbl_saldoTotalConta_Click(object sender, EventArgs e)
-        {
-            // Pode implementar uma funcionalidade aqui se desejar
-        }
-
-        // Método para logout (você pode adicionar um botão para isso)
-        private void btn_logout_Click(object sender, EventArgs e)
-        {
-            functions.Logout();
-            MessageBox.Show("Logout realizado com sucesso!");
-            this.Close();
-        }
-
-        // Override do evento FormClosing para dar opção de logout
-        protected override void OnFormClosing(FormClosingEventArgs e)
-        {
-
-            if (MessageBox.Show("Deseja fazer logout ao fechar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-            {
-                e.Cancel = true;
-            }
-            else
-            {
-                functions.Logout();
-                Application.Exit();
-            }
-
-        }
-
-        private void btn_editarSaldo_Click(object sender, EventArgs e)
-        {
-            usuarioLogado = functions.ObterUsuarioLogado();
-            if (string.IsNullOrEmpty(usuarioLogado))
-            {
-                MessageBox.Show("Usuário não está logado!");
-                return;
-            }
-
-            Form4 AddSaldo = new Form4(usuarioLogado);
-            AddSaldo.ShowDialog(); // Usa ShowDialog para aguardar o fechamento
-
-            // Atualiza o saldo após adicionar
-            AtualizarSaldoTotal();
-        }
-
         private void btn_excluirConta_Click(object sender, EventArgs e)
         {
             if (dataGridView1.CurrentRow != null)
@@ -189,6 +136,7 @@ namespace App___PI
                     MessageBox.Show("Removido com sucesso!");
                     AtualizarDataGrid();
                     AtualizarSaldoTotal();
+                    PopularCategoriasFiltro();
                 }
             }
             else
@@ -259,6 +207,12 @@ namespace App___PI
             {
                 MessageBox.Show("Selecione uma linha para editar.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void Form2_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            functions.Logout();
+            Application.Exit();
         }
     }
 }
