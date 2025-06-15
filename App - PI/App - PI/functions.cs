@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace App___PI
 {
-    class functions
+    public static class functions
     {
         public static string CaminhoFluxoFacilDatabase = @"C:\Users\Public\Documents\fluxofacildatabase.csv";
         public static string CaminhoFluxoFaciluser = @"C:\Users\Public\Documents\fluxofaciluser.csv";

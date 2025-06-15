@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +28,19 @@ namespace App___PI
             txt_nome_atualizar.Text = nome;
             txt_categoria_atualizar.Text = categoria;
             comboBox_DR_atualizar.Text = tipo;
-            dateTime_Data_atualizar.Value = DateTime.Parse(data);
+
+            try
+            {
+                // Define o formato brasileiro de data
+                var formatoBR = "dd/MM/yyyy";
+                dateTime_Data_atualizar.Value = DateTime.ParseExact(data, formatoBR, CultureInfo.InvariantCulture);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Formato de data inválido: " + data, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dateTime_Data_atualizar.Value = DateTime.Today;
+            }
+
             txt_valor_atualizar.Text = valor;
         }
 

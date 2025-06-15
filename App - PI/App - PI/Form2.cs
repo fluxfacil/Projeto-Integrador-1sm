@@ -53,7 +53,7 @@ namespace App___PI
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = functions.LerDatabasePorUsuario(usuarioLogado);
         }
-        private void PopularCategoriasFiltro()
+        public void PopularCategoriasFiltro()
         {
             comboBox_Filtro.Items.Clear();
             comboBox_Filtro.Items.Add("Todas");
@@ -86,11 +86,9 @@ namespace App___PI
                 return;
             }
 
-            lbl_user.Text = $"Olá:{usuarioLogado}";
+            lbl_user.Text = $"Olá: {usuarioLogado}";
             PopularCategoriasFiltro();
-
-
-
+            comboBoxTipo.SelectedIndex = 0; // Seleciona "Todos" por padrão
 
         }
 
@@ -109,6 +107,7 @@ namespace App___PI
 
             // Atualiza a tela após adicionar conta
             AtualizarDataGrid();
+            PopularCategoriasFiltro();
             AtualizarSaldoTotal();
         }
 
@@ -136,19 +135,17 @@ namespace App___PI
         // Override do evento FormClosing para dar opção de logout
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            var result = MessageBox.Show("Deseja fazer logout ao fechar?", "Sair",
-                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Cancel)
+            if (MessageBox.Show("Deseja fazer logout ao fechar?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
             }
-            else if (result == DialogResult.Yes)
+            else
             {
                 functions.Logout();
+                Application.Exit();
             }
 
-            base.OnFormClosing(e);
         }
 
         private void btn_editarSaldo_Click(object sender, EventArgs e)
@@ -171,11 +168,18 @@ namespace App___PI
         {
             if (dataGridView1.CurrentRow != null)
             {
-                string nome = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                string categoria = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                string tipo = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                string data = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-                string valor = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+                string? nome = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                string? categoria = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+                string? tipo = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+                string? data = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                string? valor = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+
+                if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(categoria) ||
+                    string.IsNullOrEmpty(tipo) || string.IsNullOrEmpty(data) || string.IsNullOrEmpty(valor))
+                {
+                    MessageBox.Show("Selecione um item válido para excluir.");
+                    return;
+                }
 
                 DialogResult dr = MessageBox.Show("Deseja realmente remover este item?", "Confirmação", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
@@ -193,47 +197,67 @@ namespace App___PI
             }
         }
 
-
-        private void comboBox_Filtro_SelectedIndexChanged(object sender, EventArgs e)
+        private void AplicarFiltros()
         {
-            string categoriaSelecionada = comboBox_Filtro.SelectedItem.ToString();
+            string categoriaSelecionada = comboBox_Filtro.SelectedItem?.ToString() ?? "Todas";
+            string tipoSelecionado = comboBoxTipo.SelectedItem?.ToString() ?? "Todos";
             usuarioLogado = functions.ObterUsuarioLogado();
 
             if (string.IsNullOrEmpty(usuarioLogado))
                 return;
 
             DataTable dt = functions.LerDatabasePorUsuario(usuarioLogado);
+            DataView dv = dt.DefaultView;
+
+            List<string> filtros = new List<string>();
 
             if (categoriaSelecionada != "Todas")
+                filtros.Add($"Categoria = '{categoriaSelecionada}'");
+
+            if (tipoSelecionado != "Todos")
+                filtros.Add($"Tipo = '{tipoSelecionado}'");
+
+            dv.RowFilter = string.Join(" AND ", filtros);
+            dataGridView1.DataSource = dv;
+        }
+
+        private void comboBox_Filtro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+
+        private void comboBoxTipo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            AplicarFiltros();
+        }
+
+        private void btn_editarConta_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count > 0)
             {
-                DataView dv = dt.DefaultView;
-                dv.RowFilter = $"Categoria = '{categoriaSelecionada}'";
-                dataGridView1.DataSource = dv;
+                var row = dataGridView1.SelectedRows[0];
+
+                if (row.Cells.Count >= 5)
+                {
+                    string nome = row.Cells[0].Value?.ToString() ?? "";
+                    string categoria = row.Cells[1].Value?.ToString() ?? "";
+                    string tipo = row.Cells[2].Value?.ToString() ?? "";
+                    string data = row.Cells[3].Value?.ToString() ?? "";
+                    string valor = row.Cells[4].Value?.ToString() ?? "";
+
+                    // Abre o Form6 com os dados
+                    Form6 formAtualizar = new Form6(nome, categoria, tipo, data, valor);
+                    formAtualizar.ShowDialog();
+
+                    // Após fechar o form, reatualiza a tabela aplicando os filtros
+                    AplicarFiltros();
+                    PopularCategoriasFiltro();
+                    AtualizarSaldoTotal();
+                }
             }
             else
             {
-                dataGridView1.DataSource = dt;
-            }
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && dataGridView1.Rows[e.RowIndex].Cells.Count >= 5)
-            {
-                var row = dataGridView1.Rows[e.RowIndex];
-
-                string nome = row.Cells[0].Value.ToString();
-                string categoria = row.Cells[1].Value.ToString();
-                string tipo = row.Cells[2].Value.ToString(); // "Despesa" ou "Receita"
-                string data = row.Cells[3].Value.ToString();
-                string valor = row.Cells[4].Value.ToString();
-
-                // Abre o Form6 com os dados
-                Form6 formAtualizar = new Form6(nome, categoria, tipo, data, valor);
-                formAtualizar.ShowDialog();
-
-                AtualizarDataGrid();
-                AtualizarSaldoTotal();
+                MessageBox.Show("Selecione uma linha para editar.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

@@ -39,6 +39,9 @@ namespace App___PI
             pictureBox1 = new PictureBox();
             lbl_saldoTotalConta = new Label();
             btn_excluirConta = new Button();
+            label2 = new Label();
+            comboBoxTipo = new ComboBox();
+            btn_editarConta = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -48,9 +51,9 @@ namespace App___PI
             label1.AutoSize = true;
             label1.Location = new Point(39, 139);
             label1.Name = "label1";
-            label1.Size = new Size(94, 15);
+            label1.Size = new Size(91, 15);
             label1.TabIndex = 22;
-            label1.Text = "Filtrar Categoria:";
+            label1.Text = "Filtrar Categoria";
             // 
             // comboBox_Filtro
             // 
@@ -74,7 +77,6 @@ namespace App___PI
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(783, 227);
             dataGridView1.TabIndex = 20;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // btn_adicionarConta
             // 
@@ -144,11 +146,47 @@ namespace App___PI
             btn_excluirConta.UseVisualStyleBackColor = false;
             btn_excluirConta.Click += btn_excluirConta_Click;
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(182, 138);
+            label2.Name = "label2";
+            label2.Size = new Size(64, 15);
+            label2.TabIndex = 26;
+            label2.Text = "Filtrar Tipo";
+            // 
+            // comboBoxTipo
+            // 
+            comboBoxTipo.FormattingEnabled = true;
+            comboBoxTipo.Items.AddRange(new object[] { "Todos", "Receita", "Despesa" });
+            comboBoxTipo.Location = new Point(182, 155);
+            comboBoxTipo.Margin = new Padding(3, 2, 3, 2);
+            comboBoxTipo.Name = "comboBoxTipo";
+            comboBoxTipo.Size = new Size(133, 23);
+            comboBoxTipo.TabIndex = 25;
+            comboBoxTipo.SelectedIndexChanged += comboBoxTipo_SelectedIndexChanged_1;
+            // 
+            // btn_editarConta
+            // 
+            btn_editarConta.BackColor = Color.Yellow;
+            btn_editarConta.ImageAlign = ContentAlignment.BottomCenter;
+            btn_editarConta.Location = new Point(610, 138);
+            btn_editarConta.Margin = new Padding(3, 2, 3, 2);
+            btn_editarConta.Name = "btn_editarConta";
+            btn_editarConta.Size = new Size(103, 31);
+            btn_editarConta.TabIndex = 27;
+            btn_editarConta.Text = "Editar conta";
+            btn_editarConta.UseVisualStyleBackColor = false;
+            btn_editarConta.Click += btn_editarConta_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(886, 443);
+            Controls.Add(btn_editarConta);
+            Controls.Add(label2);
+            Controls.Add(comboBoxTipo);
             Controls.Add(btn_excluirConta);
             Controls.Add(lbl_saldoTotalConta);
             Controls.Add(label1);
@@ -179,5 +217,8 @@ namespace App___PI
         private PictureBox pictureBox1;
         private Label lbl_saldoTotalConta;
         private Button btn_excluirConta;
+        private Label label2;
+        private ComboBox comboBoxTipo;
+        private Button btn_editarConta;
     }
 }
